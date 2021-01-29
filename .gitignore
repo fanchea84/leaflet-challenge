@@ -1,3 +1,11 @@
+**/config.js
+
+
+# ----------------------------------------------
+# BELOW IS THE GITIGNORE TEMPLATE FROM GITHUB
+# ----------------------------------------------
+# Byte-compiled / optimized / DLL files
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
