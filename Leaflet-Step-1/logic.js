@@ -6,3 +6,6 @@ d3.json(queryUrl).then(function(data) {
     // The data.features object is in the GeoJSON standard
     console.log(data.features);
 });
+
+
+// RESOURCE: MODULE 17 LEAFLET > DAY 1 > EXERCISE 10
