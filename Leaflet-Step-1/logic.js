@@ -19,29 +19,14 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 
 // Grab the data with d3
 d3.json(queryUrl).then(function (data) {
-    console.log(data);
-    console.log(data.lat);
-    console.log(Object.keys(data.lat).length);
-    var index = 0;
-    var plotdata = [];
-    Object.keys(data.lat).forEach(function () {
-        var thisobject = {
-            location: [data.lat[index], data.lng[index]],
-            citystate: data.Location[index]
-        }
-        plotdata.push(thisobject)
-        index = index + 1
-    })
-    console.log(plotdata)
-    // Loop through the plotdata array and create one marker for each city, bind a popup containing its name and population add it to the map
-    for (var i = 0; i < plotdata.length; i++) {
-        var city = plotdata[i];
-        L.marker(city.location)
-            .bindPopup("<h1>" + city.citystate + "</h1>")
-            .addTo(myMap);
-    }
+    // The data.features object is in the GeoJSON standard
+    console.log(data.features);
+    // pull in features from the 'geometry' key
+    var earthquakes = L.geoJSON(data.features);
 
 });
+
+
 
 // [{location:[lat,lon]}]
 // HINTS: Store this in MongoDB so you don't have to do some stuff
