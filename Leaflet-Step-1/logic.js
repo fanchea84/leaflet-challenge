@@ -53,14 +53,21 @@ d3.json(queryUrl).then(function (data) {
                 weight: 1.6,
                 radius: feature.properties.mag*4
             };
-        }
-    })
-    // The data.features object is in the GeoJSON standard
-    console.log(data.features);
-    // pull in features from the 'geometry' key
-    var earthquakes = L.geoJSON(data.features);
-
+        },
+    // })
+    // call each feature
+    onEachFeature: function(feature, layer) {
+        // Add pop-ups 
+        layer.bindPopup("<h1>" + feature.properties.place + "</h1> <hr> <h2> Magnitude: " + feature.properties.mag + "</h2>");
+    }
 });
+
+    // The data.features object is in the GeoJSON standard
+    // console.log(data.features);
+    // pull in features from the 'geometry' key
+    // var earthquakes = L.geoJSON(data.features);
+
+
 
 
 
