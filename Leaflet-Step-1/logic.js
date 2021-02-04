@@ -31,6 +31,9 @@ function quakemMagColor(mag) {
     if (mag > 2.0) {
         return "236AB9";
     }
+    if (mag > 0) {
+        return "blue";
+    }
 }
 
 // Grab the data with d3
