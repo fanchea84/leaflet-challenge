@@ -19,6 +19,15 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 
 // Color the mag layer based on the magnitude of the earthquake
 function quakemMagColor(mag) {
+    if (mag > 5.0) {
+        return "red";
+    }
+    if (mag > 4.0) {
+        return "orange";
+    }
+    if (mag > 3.0) {
+        return "yellow";
+    }
     
 }
 
