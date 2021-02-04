@@ -68,9 +68,13 @@ legend.onAdd = function (map) {
         grades = [0,2,3,4,5],
         labels = [];
         colors = ["blue", "black", "yellow", "orange", "red"]
+    // Add labels with color for magnitude size
+    for ( var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + colors[i] + '"></i> ' +
+            grades[i] + (grades[i+1] ? '&ndash;' + grades [i+1] + '<br>' : '+');
+    }
 legend.addTo(myMap);
-
-
 };
 
 
