@@ -17,8 +17,8 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: API_KEY
 }).addTo(myMap);
 
-// Color the mag layer based on the magnitude of the earthquake
-function quakemMagColor(mag) {
+// Color the map layer based on the magnitude of the earthquake
+function quakeMagColor(mag) {
     if (mag > 5.0) {
         return "red";
     }
@@ -36,8 +36,25 @@ function quakemMagColor(mag) {
     }
 }
 
-// Grab the data with d3
+// Grab the GeoJSON data with d3
 d3.json(queryUrl).then(function (data) {
+    // Create geoJSON layer with the data we retrieved from d3
+    L.geoJson(data, {
+        // Add a circle marker to the layer
+        pointToLayer: function(feature,latlng) {
+            return L.circleMarker(latlng)
+        },
+        style: function(feature) {
+            return {
+                color: "white",
+                // Call the quakeMagColor function to color our geography based on earthquake magnitude
+                fillColor: quakeMagColor(feature.properties.mag),
+                fillOpacity: .8,
+                weight: 1.6,
+                radius: feature.properties.mag*4
+            };
+        }
+    })
     // The data.features object is in the GeoJSON standard
     console.log(data.features);
     // pull in features from the 'geometry' key
