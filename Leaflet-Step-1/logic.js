@@ -29,7 +29,7 @@ function quakeMagColor(mag) {
         return "yellow";
     }
     if (mag > 2.0) {
-        return "236AB9";
+        return "black";
     }
     if (mag > 0) {
         return "blue";
@@ -54,18 +54,24 @@ d3.json(queryUrl).then(function (data) {
                 radius: feature.properties.mag*4
             };
         },
-    // })
     // call each feature
     onEachFeature: function(feature, layer) {
         // Add pop-ups 
         layer.bindPopup("<h1>" + feature.properties.place + "</h1> <hr> <h2> Magnitude: " + feature.properties.mag + "</h2>");
     }
+}).addTo(myMap);
 });
+// Add legend explaining the color of the bubbles on the map
+var legend = L.control({position: 'topright'});
+legend.onAdd = function (map) {
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [0,2,3,4,5],
+        labels = [];
+        colors = ["blue", "black", "yellow", "orange", "red"]
+legend.addTo(myMap);
 
-    // The data.features object is in the GeoJSON standard
-    // console.log(data.features);
-    // pull in features from the 'geometry' key
-    // var earthquakes = L.geoJSON(data.features);
+
+};
 
 
 
