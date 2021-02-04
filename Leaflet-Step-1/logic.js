@@ -1,9 +1,9 @@
 // API
 var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson";
 
-// Creating map object
+// Create map object
 var myMap = L.map("mapid", {
-    center: [37.0902, -95.7129], //USA coordinates
+    center: [37.0902, -95.7129], //USA coordinates, middle of Kansas
     zoom: 5
 });
 
@@ -16,6 +16,11 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     id: "mapbox/streets-v11",
     accessToken: API_KEY
 }).addTo(myMap);
+
+// Color the mag layer based on the magnitude of the earthquake
+function quakemMagColor(mag) {
+    
+}
 
 // Grab the data with d3
 d3.json(queryUrl).then(function (data) {
